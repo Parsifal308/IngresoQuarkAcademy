@@ -1,0 +1,17 @@
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\bin\Debug\net6.0-windows\ExamenQuarkAcademy.exe
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\bin\Debug\net6.0-windows\ExamenQuarkAcademy.deps.json
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\bin\Debug\net6.0-windows\ExamenQuarkAcademy.runtimeconfig.json
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\bin\Debug\net6.0-windows\ExamenQuarkAcademy.dll
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\bin\Debug\net6.0-windows\ref\ExamenQuarkAcademy.dll
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\bin\Debug\net6.0-windows\ExamenQuarkAcademy.pdb
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.csproj.AssemblyReference.cache
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.csproj.GenerateResource.cache
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.GeneratedMSBuildEditorConfig.editorconfig
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.AssemblyInfoInputs.cache
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.AssemblyInfo.cs
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.csproj.CoreCompileInputs.cache
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.dll
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ref\ExamenQuarkAcademy.dll
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.pdb
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.genruntimeconfig.cache
+D:\Proyectos\QuarkAcademyExam\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.VistaTienda.resources
