@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Proyectos\\QuarkAcademyExam\\ExamenQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy.csproj": {}
+    "D:\\Proyectos\\IngresoQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy.csproj": {}
   },
   "projects": {
-    "D:\\Proyectos\\QuarkAcademyExam\\ExamenQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy.csproj": {
+    "D:\\Proyectos\\IngresoQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Proyectos\\QuarkAcademyExam\\ExamenQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy.csproj",
+        "projectUniqueName": "D:\\Proyectos\\IngresoQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy.csproj",
         "projectName": "ExamenQuarkAcademy",
-        "projectPath": "D:\\Proyectos\\QuarkAcademyExam\\ExamenQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy.csproj",
+        "projectPath": "D:\\Proyectos\\IngresoQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy.csproj",
         "packagesPath": "C:\\Users\\Guillermo Marinero\\.nuget\\packages\\",
-        "outputPath": "D:\\Proyectos\\QuarkAcademyExam\\ExamenQuarkAcademy\\ExamenQuarkAcademy\\obj\\",
+        "outputPath": "D:\\Proyectos\\IngresoQuarkAcademy\\ExamenQuarkAcademy\\ExamenQuarkAcademy\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Guillermo Marinero\\AppData\\Roaming\\NuGet\\NuGet.Config",

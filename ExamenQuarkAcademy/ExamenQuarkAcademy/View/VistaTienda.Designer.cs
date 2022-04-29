@@ -154,9 +154,11 @@
             // Historial_Label
             // 
             this.Historial_Label.AutoSize = true;
+            this.Historial_Label.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Historial_Label.ForeColor = System.Drawing.Color.Blue;
             this.Historial_Label.Location = new System.Drawing.Point(308, 15);
             this.Historial_Label.Name = "Historial_Label";
-            this.Historial_Label.Size = new System.Drawing.Size(121, 15);
+            this.Historial_Label.Size = new System.Drawing.Size(125, 15);
             this.Historial_Label.TabIndex = 2;
             this.Historial_Label.Text = "Historial Cotizaciones";
             this.Historial_Label.Click += new System.EventHandler(this.Historial_Label_Click);
@@ -380,7 +382,7 @@
             this.Mao_CheckBox.TabIndex = 2;
             this.Mao_CheckBox.Text = "Cuello Mao";
             this.Mao_CheckBox.UseVisualStyleBackColor = true;
-            this.Mao_CheckBox.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.Mao_CheckBox.CheckedChanged += new System.EventHandler(this.CuelloMao_CheckedChanged);
             // 
             // MangaCorta_CheckBox
             // 

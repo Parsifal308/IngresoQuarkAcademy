@@ -29,6 +29,9 @@ namespace ExamenQuarkAcademy
             this.calidad = calidad;
             this.stock = stock;
         }
+        public void DescontarStock(int venta){
+            this.stock -= venta;
+            }
 
 
     }

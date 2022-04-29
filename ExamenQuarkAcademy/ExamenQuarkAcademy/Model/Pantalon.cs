@@ -22,6 +22,7 @@ namespace ExamenQuarkAcademy
 
     public enum PantalonTipo
     {
+        NULL,
         Comun,
         Chupin
     }

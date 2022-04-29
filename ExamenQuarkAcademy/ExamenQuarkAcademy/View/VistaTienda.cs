@@ -1,73 +1,51 @@
 using ExamenQuarkAcademy.Controller;
+using ExamenQuarkAcademy.Model;
 using ExamenQuarkAcademy.View;
 using System.Diagnostics;
 
 namespace ExamenQuarkAcademy
 {
     public partial class VistaTienda : Form, I_Vista{
-        private event EventHandler? OnVistaCreada, OnVistaCerrada;
-        public VistaTienda()
-        {
-            OnVistaCreada += MainController.Instance.RegisterVistaTienda;
+
+        private Presenter presenter;
+        public VistaTienda() {
             InitializeComponent();
-            Console.WriteLine("VistaTienda instanciada.");
+            Standard_RadioButton.Checked = true;
+            //Camisa_RadioButton.Checked = true;
+            Console.WriteLine("\n VistaTienda INSTANCIADA.");
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            this.Chupin_CheckBox.Checked = false;
-        }
-
-        private void Cotizar_Click(object sender, EventArgs e)
-        {
-            //BOTON COTIZAR
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void VistaTienda_Load(object sender, EventArgs e)
         {
-            OnVistaCreada?.Invoke(this, EventArgs.Empty);
-            ActualizarTienda(MainController.Instance.Tienda);
+            presenter = new Presenter(this);
 
+            //DATOS HARDCODEADOS
+            presenter.InicializarTienda("Tienda Quark", "Algun Lugar 1234", new List<Prenda>(), new List<Vendedor>());
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaCorta, CuelloTipo.Mao, 1000f, Calidad.Standard, 100));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaCorta, CuelloTipo.Mao, 1000f, Calidad.Premium, 100));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaCorta, CuelloTipo.Comun, 1000f, Calidad.Standard, 150));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaCorta, CuelloTipo.Comun, 1000f, Calidad.Premium, 150));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaLarga, CuelloTipo.Mao, 1000f, Calidad.Standard, 75));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaLarga, CuelloTipo.Mao, 1000f, Calidad.Premium, 75));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaLarga, CuelloTipo.Comun, 1000f, Calidad.Standard, 175));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaLarga, CuelloTipo.Comun, 1000f, Calidad.Premium, 175));
+            presenter.Tienda.AgregarPrenda(new Pantalon(PantalonTipo.Chupin, 1000f, Calidad.Standard, 750));
+            presenter.Tienda.AgregarPrenda(new Pantalon(PantalonTipo.Chupin, 1000f, Calidad.Premium, 750));
+            presenter.Tienda.AgregarPrenda(new Pantalon(PantalonTipo.Comun, 1000f, Calidad.Standard, 250));
+            presenter.Tienda.AgregarPrenda(new Pantalon(PantalonTipo.Comun, 1000f, Calidad.Premium, 250));
+            presenter.Tienda.AgregarVendedor(new Vendedor("Guillermo", "Marinero", 001));
+            Console.WriteLine("\n Tienda, Prendas, Vendedor hardcodeados instanciados.");
 
-            ActualizarVendedor(MainController.Instance.Tienda.Vendedores[0]); //VENDEDOR HARCODEADO
-
+            this.ActualizarVendedor(presenter.Tienda.Vendedores[0]);
+            this.ActualizarTienda(presenter.Tienda);
         }
 
-        private void Tienda_Label_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Nombre_Label_Click(object sender, EventArgs e)
-        {
-
-        }
 
         public void ActualizarVendedor(Vendedor vendedor)
         {
             this.Nombre_Label.Text = vendedor.Nombre + " " + vendedor.Apellido;
             this.CodVendedor_Label.Text = vendedor.CodVendedor.ToString();
-            Console.WriteLine("...vendedor actualizado.");
+            Console.WriteLine("\n INFORMACION DE VENDEDOR ACTUALIZADA.");
         }
 
         public void ActualizarTienda(Tienda tienda)
@@ -75,61 +53,150 @@ namespace ExamenQuarkAcademy
             this.Tienda_Label.Text = tienda.Nombre;
             this.Direccion_Label.Text = tienda.Direccion;
         }
-
-        public void ActualizarPrenda(){
-            Console.WriteLine("Actualizando informacion de prenda");
+        public Vendedor GetVendedorFromUI()
+        {
+            Console.WriteLine("\n BUSCANDO VENDEDOR SEGUR INFORMACION DE LA UI...");
+            return presenter.Tienda.BuscarVendedorPorId(Int32.Parse(CodVendedor_Label.Text));
+        }
+        public Prenda GetPrendaFromUI(){
+            Console.WriteLine("\n BUSCANDO PRENDA CON SEGUN INFORMACIO DE LA UI...");
             if (this.Camisa_RadioButton.Checked){
-                if (this.MangaCorta_CheckBox.Checked) {
+                if (this.MangaCorta_CheckBox.Checked){
                     if (this.Mao_CheckBox.Checked){
                         if (this.Standard_RadioButton.Checked){
-                            //stock manga corta y cuello mao STANDARD
+                            Console.WriteLine(" -> manga corta y cuello mao STANDARD");
+                            return presenter.Tienda.BuscarCamisa(CuelloTipo.Mao, CamisaTipo.mangaCorta, Calidad.Standard);
                         }
                         else if (this.Premium_RadioButton.Checked){
-                            //stock manga corta y cuello mao PREMIUM
+                            Console.WriteLine(" -> manga corta y cuello mao PREMIUM");
+                            return presenter.Tienda.BuscarCamisa(CuelloTipo.Mao, CamisaTipo.mangaCorta, Calidad.Premium);
                         }
                     }
                     else{
                         if (this.Standard_RadioButton.Checked){
-                            //stock manga corta y cuello comun STANDARD
+                            Console.WriteLine(" -> manga corta y cuello comun STANDARD");
+                            return presenter.Tienda.BuscarCamisa(CuelloTipo.Comun, CamisaTipo.mangaCorta, Calidad.Standard);
                         }
                         else if (this.Premium_RadioButton.Checked){
-                            //stock manga corta y cuello comun PREMIUM
+                            Console.WriteLine(" -> manga corta y cuello comun PREMIUM");
+                            return presenter.Tienda.BuscarCamisa(CuelloTipo.Comun, CamisaTipo.mangaCorta, Calidad.Premium);
                         }
                     }
                 }
                 else{
                     if (this.Mao_CheckBox.Checked){
                         if (this.Standard_RadioButton.Checked){
-                            //stock manga larga y cuello mao STANDARD
+                            Console.WriteLine(" -> manga larga y cuello mao STANDARD");
+                            return presenter.Tienda.BuscarCamisa(CuelloTipo.Mao, CamisaTipo.mangaLarga, Calidad.Standard);
                         }
                         else if (this.Premium_RadioButton.Checked){
-                            //stock manga larga y cuello mao PREMIum
+                            Console.WriteLine(" -> manga larga y cuello mao PREMIUM");
+                            return presenter.Tienda.BuscarCamisa(CuelloTipo.Mao, CamisaTipo.mangaLarga, Calidad.Premium);
                         }
                     }
                     else{
                         if (this.Standard_RadioButton.Checked){
-                            //stock manga larga y cuello comun STANDARD
+                            Console.WriteLine(" -> manga larga y cuello comun STANDARD");
+                            return presenter.Tienda.BuscarCamisa(CuelloTipo.Comun, CamisaTipo.mangaLarga, Calidad.Standard);
                         }
                         else if (this.Premium_RadioButton.Checked){
-                            //stock manga larga y cuello comun PREMIUM
+                            Console.WriteLine(" -> manga larga y cuello comun PREMIUM");
+                            return presenter.Tienda.BuscarCamisa(CuelloTipo.Comun, CamisaTipo.mangaLarga, Calidad.Premium);
+                        }
+                    }
+                }
+            }
+            else if (this.Pantalon_RadioButton.Checked){
+                if (this.Chupin_CheckBox.Checked){
+                    if (this.Standard_RadioButton.Checked){
+                        Console.WriteLine(" -> pantalon chupin STANDARD");
+                        return presenter.Tienda.BuscarPantalon(PantalonTipo.Chupin, Calidad.Standard);
+                    }
+                    else if (this.Premium_RadioButton.Checked){
+                        Console.WriteLine(" -> pantalon chupin PREMIUM");
+                        return presenter.Tienda.BuscarPantalon(PantalonTipo.Chupin, Calidad.Premium);
+
+                    }
+                }
+                else{
+                    if (this.Standard_RadioButton.Checked){
+                        Console.WriteLine(" -> pantalon comun STANDARD");
+                        return presenter.Tienda.BuscarPantalon(PantalonTipo.Comun, Calidad.Standard);
+                    }
+                    else if (this.Premium_RadioButton.Checked){
+                        Console.WriteLine(" -> pantalon comun PREMIMUNM");
+                        return presenter.Tienda.BuscarPantalon(PantalonTipo.Comun, Calidad.Premium);
+                    }
+                }
+            }
+            return null;
+        }
+        public void ActualizarPrenda(){
+            Console.WriteLine("\n ACTUALIZANDO INFORMACION DE PRENDA EN UI...");
+            if (this.Camisa_RadioButton.Checked){
+                if (this.MangaCorta_CheckBox.Checked) {
+                    if (this.Mao_CheckBox.Checked){
+                        if (this.Standard_RadioButton.Checked){
+                            Console.WriteLine(" -> stock manga corta y cuello mao STANDARD");
+                            StockDisponible_Label.Text = presenter.Tienda.BuscarCamisa(CuelloTipo.Mao,CamisaTipo.mangaCorta,Calidad.Standard)?.Stock.ToString();
+                        }
+                        else if (this.Premium_RadioButton.Checked){
+                            Console.WriteLine(" -> stock manga corta y cuello mao PREMIUM");
+                            StockDisponible_Label.Text = presenter.Tienda.BuscarCamisa(CuelloTipo.Mao, CamisaTipo.mangaCorta, Calidad.Premium)?.Stock.ToString();
+                        }
+                    }
+                    else{
+                        if (this.Standard_RadioButton.Checked){
+                            Console.WriteLine(" -> stock manga corta y cuello comun STANDARD");
+                            StockDisponible_Label.Text = presenter.Tienda.BuscarCamisa(CuelloTipo.Comun, CamisaTipo.mangaCorta, Calidad.Standard)?.Stock.ToString();
+                        }
+                        else if (this.Premium_RadioButton.Checked){
+                            Console.WriteLine(" -> stock manga corta y cuello comun PREMIUM");
+                            StockDisponible_Label.Text = presenter.Tienda.BuscarCamisa(CuelloTipo.Comun, CamisaTipo.mangaCorta, Calidad.Premium)?.Stock.ToString();
+                        }
+                    }
+                }
+                else{
+                    if (this.Mao_CheckBox.Checked){
+                        if (this.Standard_RadioButton.Checked){
+                            Console.WriteLine(" -> stock manga larga y cuello mao STANDARD");
+                            StockDisponible_Label.Text = presenter.Tienda.BuscarCamisa(CuelloTipo.Mao, CamisaTipo.mangaLarga, Calidad.Standard)?.Stock.ToString();
+                        }
+                        else if (this.Premium_RadioButton.Checked){
+                            Console.WriteLine(" -> stock manga larga y cuello mao PREMIUM");
+                            StockDisponible_Label.Text = presenter.Tienda.BuscarCamisa(CuelloTipo.Mao, CamisaTipo.mangaLarga, Calidad.Premium)?.Stock.ToString();
+                        }
+                    }
+                    else{
+                        if (this.Standard_RadioButton.Checked){
+                            Console.WriteLine(" -> stock manga larga y cuello comun STANDARD");
+                            StockDisponible_Label.Text = presenter.Tienda.BuscarCamisa(CuelloTipo.Comun, CamisaTipo.mangaLarga, Calidad.Standard)?.Stock.ToString();
+                        }
+                        else if (this.Premium_RadioButton.Checked){
+                            Console.WriteLine(" -> stock manga larga y cuello comun PREMIUM");
+                            StockDisponible_Label.Text = presenter.Tienda.BuscarCamisa(CuelloTipo.Comun, CamisaTipo.mangaLarga, Calidad.Premium)?.Stock.ToString();
                         }
                     }
                 }
             }else if (this.Pantalon_RadioButton.Checked){
                 if (this.Chupin_CheckBox.Checked){
                     if (this.Standard_RadioButton.Checked){
-                        //stock pantalon chupin STANDARD
+                        Console.WriteLine(" -> stock pantalon chupin STANDARD");
+                        StockDisponible_Label.Text = presenter.Tienda.BuscarPantalon(PantalonTipo.Chupin, Calidad.Standard).Stock.ToString();
                     }
                     else if (this.Premium_RadioButton.Checked){
-                        //stock pantalon chupin PREMIUM
+                        Console.WriteLine(" -> stock pantalon chupin PREMIUM");
+                        StockDisponible_Label.Text = presenter.Tienda.BuscarPantalon(PantalonTipo.Chupin, Calidad.Premium).Stock.ToString();
                     }
                 }
                 else{
                     if (this.Standard_RadioButton.Checked){
-                        //stock pantalon comun STANDARD
+                        Console.WriteLine(" -> stock pantalon comun STANDARD");
+                        StockDisponible_Label.Text = presenter.Tienda.BuscarPantalon(PantalonTipo.Comun, Calidad.Standard)?.Stock.ToString();
                     }
                     else if (this.Premium_RadioButton.Checked){
-                        //stock pantalon comun PREMIMUNM
+                        Console.WriteLine(" -> stock pantalon comun PREMIMUNM");
+                        StockDisponible_Label.Text = presenter.Tienda.BuscarPantalon(PantalonTipo.Comun, Calidad.Premium)?.Stock.ToString();
                     }
                 }
             }
@@ -138,13 +205,16 @@ namespace ExamenQuarkAcademy
 
         private void Chupin_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            this.MangaCorta_CheckBox.Checked = false;
-            this.Mao_CheckBox.Checked = false;
+            this.ActualizarPrenda();
         }
 
         private void MangaCorta_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            this.Chupin_CheckBox.Checked = false;
+            this.ActualizarPrenda();
+        }
+        private void CuelloMao_CheckedChanged(object sender, EventArgs e)
+        {
+            this.ActualizarPrenda();
         }
 
         private void Camisa_RadioButton_CheckedChanged(object sender, EventArgs e)
@@ -165,20 +235,8 @@ namespace ExamenQuarkAcademy
             this.Chupin_CheckBox.Enabled = true;
             this.ActualizarPrenda();
         }
-
-        private void Historial_Label_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("MOSTRAR HISTORIAL");
-        }
-
-        private void StockDisponible_Label_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Standard_RadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            this.ActualizarPrenda();
         }
 
         private void Premium_RadioButton_CheckedChanged(object sender, EventArgs e)
@@ -186,9 +244,71 @@ namespace ExamenQuarkAcademy
             this.ActualizarPrenda();
         }
 
+        private void Historial_Label_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("\n HISTORIAL...");
+            Vendedor vendedor = GetVendedorFromUI();
+
+            //MUESTRA EN CONSOLA EL HISTORIAL
+            foreach (Cotizacion cot in vendedor.HistorialCotizaciones)
+            {
+                Console.WriteLine(" -> Id:" + cot.Id + " | Codigo Vendedor: " + cot.CodVendedor + " | Prenda: " + cot.Prenda + " | Cantidad: " + cot.Cantidad + " Total: | " + cot.Total);
+            }
+        }
         public void ActualizarTotal(float total)
         {
             throw new NotImplementedException();
+        }
+
+
+
+
+        private void StockDisponible_Label_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Tienda_Label_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Nombre_Label_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine("\n COTIZANDO...");
+            //buscar vendedor segun datos de UI
+            Vendedor vendedor = presenter.Tienda.BuscarVendedorPorId(Int32.Parse(CodVendedor_Label.Text));
+            Debug.WriteLine("Vendendor: " + vendedor.Nombre + " " + vendedor.Apellido + " | Codigo:" + vendedor.CodVendedor);
+
+            //buscar prenda segun datos de UI
+            Prenda prenda = GetPrendaFromUI();
+            Debug.WriteLine("Prenda: " + prenda + " " + prenda.Calidad);
+
+            //Cotizar
+            Cotizacion cotizacion = new Cotizacion(0, DateTime.Now, vendedor.CodVendedor, prenda, Int32.Parse(Cantidad_TextBox.Text));
+            cotizacion.Total = cotizacion.Cotizar();
+            vendedor.HistorialCotizaciones.Add(cotizacion);
+            Debug.WriteLine("Cotizacion: " + cotizacion.Id + " | Cantidad:  " + cotizacion.Cantidad + " | Precio Unitario: " + cotizacion.Prenda.PrecioUnit+" | Total: " + cotizacion.Total);
+
+            //Descontar del stock
+            prenda.DescontarStock(cotizacion.Cantidad);
+
+            //Actualizar vista
+            this.ActualizarPrenda();
         }
     }
 }

@@ -25,11 +25,13 @@ namespace ExamenQuarkAcademy
     }
     public enum CamisaTipo
     {
+        NULL,
         mangaLarga,
         mangaCorta
     }
     public enum CuelloTipo
     {
+        NULL,
         Mao,
         Comun
     }

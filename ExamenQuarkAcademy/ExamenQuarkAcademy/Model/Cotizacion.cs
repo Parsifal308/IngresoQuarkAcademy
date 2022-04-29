@@ -22,18 +22,16 @@ namespace ExamenQuarkAcademy.Model
         public int CodVendedor { get { return codVendedor; } }
         public Prenda Prenda { get { return prenda; } }
         public int Cantidad { get { return cantidad; } }
-        public float Total { get { return total; } }
+        public float Total { get { return total; } set { total = value; } }
         #endregion
 
-        public Cotizacion(int id, DateTime fechaHora, int codVendedor, Prenda prenda, int cantidad, float total)
+        public Cotizacion(int id, DateTime fechaHora, int codVendedor, Prenda prenda, int cantidad)
         {
             this.id = id;
             this.fechaHora = fechaHora;
             this.codVendedor = codVendedor;
             this.prenda = prenda;
             this.cantidad = cantidad;
-            this.total = total;
-
         }
 
         public float Cotizar()
@@ -63,10 +61,5 @@ namespace ExamenQuarkAcademy.Model
 
             return subtotal;
         }
-
-        /*
-         
-         */
-
     }
 }
