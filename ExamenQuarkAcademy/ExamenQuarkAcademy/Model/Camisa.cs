@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExamenQuarkAcademy
-{
+namespace ExamenQuarkAcademy{
     public class Camisa : Prenda{
         #region FIELDS
         private CamisaTipo camisaTipo;
@@ -17,20 +16,17 @@ namespace ExamenQuarkAcademy
         public override CuelloTipo CuelloTipo { get { return cuelloTipo;}}
         #endregion
 
-        public Camisa(CamisaTipo camisaTipo, CuelloTipo cuelloTipo, float precioUnit, Calidad calidad, int stock) : base(precioUnit, calidad, stock)
-        {
+        public Camisa(CamisaTipo camisaTipo, CuelloTipo cuelloTipo, float precioUnit, Calidad calidad, int stock) : base(precioUnit, calidad, stock){
             this.camisaTipo = camisaTipo;
             this.cuelloTipo = cuelloTipo;
         }
     }
-    public enum CamisaTipo
-    {
+    public enum CamisaTipo{
         NULL,
         mangaLarga,
         mangaCorta
     }
-    public enum CuelloTipo
-    {
+    public enum CuelloTipo{
         NULL,
         Mao,
         Comun

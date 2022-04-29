@@ -1,9 +1,7 @@
 using ExamenQuarkAcademy.Controller;
 
-namespace ExamenQuarkAcademy
-{
-    internal static class Program
-    {
+namespace ExamenQuarkAcademy{
+    internal static class Program{
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

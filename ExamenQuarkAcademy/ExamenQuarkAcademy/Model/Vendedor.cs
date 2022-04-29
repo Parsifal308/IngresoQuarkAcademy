@@ -22,8 +22,7 @@ namespace ExamenQuarkAcademy
         public List<Cotizacion> HistorialCotizaciones { get { return historialCotizaciones; } }
         #endregion
 
-        public Vendedor(string nombre, string apellido, int codVendedor)
-        {
+        public Vendedor(string nombre, string apellido, int codVendedor){
             this.nombre = nombre;
             this.apellido = apellido;
             this.codVendedor = codVendedor;

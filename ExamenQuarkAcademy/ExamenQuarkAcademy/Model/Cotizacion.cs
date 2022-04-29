@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExamenQuarkAcademy.Model
-{
+namespace ExamenQuarkAcademy.Model{
     public class Cotizacion{
         #region FIELDS
         private int id;
@@ -25,8 +24,7 @@ namespace ExamenQuarkAcademy.Model
         public float Total { get { return total; } set { total = value; } }
         #endregion
 
-        public Cotizacion(int id, DateTime fechaHora, int codVendedor, Prenda prenda, int cantidad)
-        {
+        public Cotizacion(int id, DateTime fechaHora, int codVendedor, Prenda prenda, int cantidad){
             this.id = id;
             this.fechaHora = fechaHora;
             this.codVendedor = codVendedor;
@@ -34,11 +32,9 @@ namespace ExamenQuarkAcademy.Model
             this.cantidad = cantidad;
         }
 
-        public float Cotizar()
-        {
+        public float Cotizar(){
             float subtotal;
             subtotal = prenda.PrecioUnit * cantidad;
-
             if (prenda is Camisa){
                 if (prenda.CamisaTipo == CamisaTipo.mangaCorta){
                     subtotal -= subtotal * 0.10f;
@@ -47,18 +43,15 @@ namespace ExamenQuarkAcademy.Model
                     }
                 }
             }
-
             if (prenda is Pantalon){
                 if (prenda.PantalonTipo == PantalonTipo.Chupin){
                     subtotal -= subtotal * 0.12f;
                 }
             }
-
             if (prenda.Calidad==Calidad.Premium){
                 //aumenta 30%
                 subtotal += subtotal * 0.30f;
             }
-
             return subtotal;
         }
     }

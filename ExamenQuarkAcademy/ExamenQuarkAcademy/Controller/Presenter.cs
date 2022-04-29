@@ -6,8 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExamenQuarkAcademy.Controller
-{
+namespace ExamenQuarkAcademy.Controller{
     public class Presenter{
 
         #region FIELDS
@@ -29,8 +28,7 @@ namespace ExamenQuarkAcademy.Controller
             Console.WriteLine("Tienda instanciada.");
         }
 
-        public void ActualizarVistaTienda()
-        {
+        public void ActualizarVistaTienda(){
             vistaTienda.ActualizarTienda(Tienda);
             Console.WriteLine("Actualizando vistaTienda...");
             

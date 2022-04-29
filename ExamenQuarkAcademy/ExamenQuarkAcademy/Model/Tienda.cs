@@ -22,28 +22,23 @@ namespace ExamenQuarkAcademy
         public List<Vendedor> Vendedores { get { return vendedores; } }
         #endregion
 
-        public Tienda(string nombre, string direccion, List<Prenda> prendas, List<Vendedor> vendedores)
-        {
+        public Tienda(string nombre, string direccion, List<Prenda> prendas, List<Vendedor> vendedores){
             this.nombre = nombre;
             this.direccion = direccion;
             this.prendas = prendas;
             this.vendedores = vendedores;
         }
 
-        public void AgregarPrenda(Prenda prenda)
-        {
+        public void AgregarPrenda(Prenda prenda){
             this.prendas.Add(prenda);
         }
-        public void QuitarPrenda(Prenda prenda)
-        {
+        public void QuitarPrenda(Prenda prenda){
             this.prendas.Remove(prenda);
         }
-        public void AgregarVendedor(Vendedor vendedor)
-        {
+        public void AgregarVendedor(Vendedor vendedor){
             this.vendedores.Add(vendedor);
         }
-        public void QuitarVendedor(Vendedor vendedor)
-        {
+        public void QuitarVendedor(Vendedor vendedor){
             this.vendedores.Remove(vendedor);
         }
         public Camisa BuscarCamisa(CuelloTipo cuelloTipo, CamisaTipo camisaTipo, Calidad calidad){

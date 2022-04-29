@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExamenQuarkAcademy
-{
+namespace ExamenQuarkAcademy{
     public abstract class Prenda {
         #region FIELDS
         private float precioUnit;
@@ -23,8 +22,7 @@ namespace ExamenQuarkAcademy
         public virtual PantalonTipo PantalonTipo { get; }
         #endregion
 
-        public Prenda(float precioUnit, Calidad calidad, int stock)
-        {
+        public Prenda(float precioUnit, Calidad calidad, int stock){
             this.precioUnit = precioUnit;
             this.calidad = calidad;
             this.stock = stock;
