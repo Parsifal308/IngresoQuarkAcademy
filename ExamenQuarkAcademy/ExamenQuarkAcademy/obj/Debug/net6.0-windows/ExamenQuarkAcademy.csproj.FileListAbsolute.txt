@@ -32,3 +32,4 @@ D:\Proyectos\IngresoQuarkAcademy\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug
 D:\Proyectos\IngresoQuarkAcademy\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ref\ExamenQuarkAcademy.dll
 D:\Proyectos\IngresoQuarkAcademy\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.pdb
 D:\Proyectos\IngresoQuarkAcademy\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.genruntimeconfig.cache
+D:\Proyectos\IngresoQuarkAcademy\ExamenQuarkAcademy\ExamenQuarkAcademy\obj\Debug\net6.0-windows\ExamenQuarkAcademy.View.Error.resources

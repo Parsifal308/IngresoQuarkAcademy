@@ -220,6 +220,7 @@
             this.PrecioUnit_TextBox.Name = "PrecioUnit_TextBox";
             this.PrecioUnit_TextBox.Size = new System.Drawing.Size(44, 23);
             this.PrecioUnit_TextBox.TabIndex = 3;
+            this.PrecioUnit_TextBox.TextChanged += new System.EventHandler(this.PrecioUnit_TextBox_TextChanged);
             // 
             // label14
             // 
@@ -465,6 +466,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "VistaTienda";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.VistaTienda_Load);
             this.panel1.ResumeLayout(false);

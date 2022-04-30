@@ -20,18 +20,18 @@ namespace ExamenQuarkAcademy
 
             //DATOS HARDCODEADOS
             presenter.InicializarTienda("Tienda Quark", "Algun Lugar 1234", new List<Prenda>(), new List<Vendedor>());
-            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaCorta, CuelloTipo.Mao, 1000f, Calidad.Standard, 100));
-            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaCorta, CuelloTipo.Mao, 1000f, Calidad.Premium, 100));
-            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaCorta, CuelloTipo.Comun, 1000f, Calidad.Standard, 150));
-            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaCorta, CuelloTipo.Comun, 1000f, Calidad.Premium, 150));
-            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaLarga, CuelloTipo.Mao, 1000f, Calidad.Standard, 75));
-            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaLarga, CuelloTipo.Mao, 1000f, Calidad.Premium, 75));
-            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaLarga, CuelloTipo.Comun, 1000f, Calidad.Standard, 175));
-            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaLarga, CuelloTipo.Comun, 1000f, Calidad.Premium, 175));
-            presenter.Tienda.AgregarPrenda(new Pantalon(PantalonTipo.Chupin, 1000f, Calidad.Standard, 750));
-            presenter.Tienda.AgregarPrenda(new Pantalon(PantalonTipo.Chupin, 1000f, Calidad.Premium, 750));
-            presenter.Tienda.AgregarPrenda(new Pantalon(PantalonTipo.Comun, 1000f, Calidad.Standard, 250));
-            presenter.Tienda.AgregarPrenda(new Pantalon(PantalonTipo.Comun, 1000f, Calidad.Premium, 250));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaCorta, CuelloTipo.Mao, Calidad.Standard, 100));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaCorta, CuelloTipo.Mao, Calidad.Premium, 100));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaCorta, CuelloTipo.Comun, Calidad.Standard, 150));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaCorta, CuelloTipo.Comun, Calidad.Premium, 150));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaLarga, CuelloTipo.Mao, Calidad.Standard, 75));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaLarga, CuelloTipo.Mao, Calidad.Premium, 75));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaLarga, CuelloTipo.Comun, Calidad.Standard, 175));
+            presenter.Tienda.AgregarPrenda(new Camisa(CamisaTipo.mangaLarga, CuelloTipo.Comun, Calidad.Premium, 175));
+            presenter.Tienda.AgregarPrenda(new Pantalon(PantalonTipo.Chupin, Calidad.Standard, 750));
+            presenter.Tienda.AgregarPrenda(new Pantalon(PantalonTipo.Chupin, Calidad.Premium, 750));
+            presenter.Tienda.AgregarPrenda(new Pantalon(PantalonTipo.Comun, Calidad.Standard, 250));
+            presenter.Tienda.AgregarPrenda(new Pantalon(PantalonTipo.Comun, Calidad.Premium, 250));
             presenter.Tienda.AgregarVendedor(new Vendedor("Guillermo", "Marinero", 001));
             Console.WriteLine("\n Tienda, Prendas, Vendedor hardcodeados instanciados.");
 
@@ -257,7 +257,8 @@ namespace ExamenQuarkAcademy
         }
         public void ActualizarTotal(float total)
         {
-            throw new NotImplementedException();
+            Vendedor vendedor = presenter.Tienda.BuscarVendedorPorId(Int32.Parse(CodVendedor_Label.Text));
+            this.Total_Label.Text = vendedor.HistorialCotizaciones.Last().Total.ToString();
         }
 
 
@@ -289,6 +290,7 @@ namespace ExamenQuarkAcademy
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Total_Label.Text = "";
             Debug.WriteLine("\n COTIZANDO...");
             //buscar vendedor segun datos de UI
             Vendedor vendedor = presenter.Tienda.BuscarVendedorPorId(Int32.Parse(CodVendedor_Label.Text));
@@ -298,17 +300,37 @@ namespace ExamenQuarkAcademy
             Prenda prenda = GetPrendaFromUI();
             Debug.WriteLine("Prenda: " + prenda + " " + prenda.Calidad);
 
-            //Cotizar
-            Cotizacion cotizacion = new Cotizacion(0, DateTime.Now, vendedor.CodVendedor, prenda, Int32.Parse(Cantidad_TextBox.Text));
-            cotizacion.Total = cotizacion.Cotizar();
-            vendedor.HistorialCotizaciones.Add(cotizacion);
-            Debug.WriteLine("Cotizacion: " + cotizacion.Id + " | Cantidad:  " + cotizacion.Cantidad + " | Precio Unitario: " + cotizacion.Prenda.PrecioUnit+" | Total: " + cotizacion.Total);
+            
+            try{
+                //Cotizar
+                int cant, precioUnit;
+                Int32.TryParse(Cantidad_TextBox.Text, out cant);
+                Int32.TryParse(PrecioUnit_TextBox.Text, out precioUnit);
+                if (cant != 0 && cant <= prenda.Stock && precioUnit!=0){
+                    Cotizacion cotizacion = new Cotizacion(0, DateTime.Now, vendedor.CodVendedor, prenda, cant);
+                    cotizacion.Total = cotizacion.Cotizar(precioUnit);
+                    this.Total_Label.Text = cotizacion.Total.ToString();
+                    vendedor.HistorialCotizaciones.Add(cotizacion);
+                    Debug.WriteLine("Cotizacion: " + cotizacion.Id + " | Cantidad:  " + cotizacion.Cantidad + " | Precio Unitario: " + cotizacion.PrecioUnit + " | Total: " + cotizacion.Total);
 
-            //Descontar del stock
-            prenda.DescontarStock(cotizacion.Cantidad);
-
+                    //Descontar del stock
+                    prenda.DescontarStock(cotizacion.Cantidad);
+                }
+                else{
+                    throw new Exception();
+                }
+            }
+            catch (Exception){
+                new Error();
+                Console.WriteLine("\n SE INTRODUJO UN VALOR INCORRECTO DE CANTIDAD");
+            }
             //Actualizar vista
             this.ActualizarPrenda();
+        }
+
+        private void PrecioUnit_TextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 namespace ExamenQuarkAcademy{
     public abstract class Prenda {
         #region FIELDS
-        private float precioUnit;
         private Calidad calidad;
         private int stock;
         #endregion
 
         #region PROPERTIES
-        public float PrecioUnit { get { return precioUnit; } }
         public int Stock { get { return stock; } }
         public Calidad Calidad { get { return calidad; } }
 
@@ -22,8 +20,7 @@ namespace ExamenQuarkAcademy{
         public virtual PantalonTipo PantalonTipo { get; }
         #endregion
 
-        public Prenda(float precioUnit, Calidad calidad, int stock){
-            this.precioUnit = precioUnit;
+        public Prenda(Calidad calidad, int stock){
             this.calidad = calidad;
             this.stock = stock;
         }
