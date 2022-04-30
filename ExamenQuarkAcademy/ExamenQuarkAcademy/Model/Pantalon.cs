@@ -13,7 +13,7 @@ namespace ExamenQuarkAcademy{
         #region PROPERTIES
         public override PantalonTipo PantalonTipo { get { return pantalonTipo; } }
         #endregion
-        public Pantalon(PantalonTipo pantalonTipo, float precioUnit, Calidad calidad, int stock) : base(precioUnit, calidad, stock){
+        public Pantalon(PantalonTipo pantalonTipo, Calidad calidad, int stock) : base(calidad, stock){
             this.pantalonTipo = pantalonTipo;
         }
     }

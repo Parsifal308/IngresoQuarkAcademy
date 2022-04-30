@@ -13,6 +13,7 @@ namespace ExamenQuarkAcademy.Model{
         private Prenda prenda;
         private int cantidad;
         private float total;
+        private float precioUnit;
         #endregion
 
         #region PROPERTIES
@@ -22,6 +23,7 @@ namespace ExamenQuarkAcademy.Model{
         public Prenda Prenda { get { return prenda; } }
         public int Cantidad { get { return cantidad; } }
         public float Total { get { return total; } set { total = value; } }
+        public float PrecioUnit { get { return precioUnit; } }
         #endregion
 
         public Cotizacion(int id, DateTime fechaHora, int codVendedor, Prenda prenda, int cantidad){
@@ -32,9 +34,10 @@ namespace ExamenQuarkAcademy.Model{
             this.cantidad = cantidad;
         }
 
-        public float Cotizar(){
+        public float Cotizar(float precio){
             float subtotal;
-            subtotal = prenda.PrecioUnit * cantidad;
+            this.precioUnit = precio;
+            subtotal = precio * cantidad;
             if (prenda is Camisa){
                 if (prenda.CamisaTipo == CamisaTipo.mangaCorta){
                     subtotal -= subtotal * 0.10f;

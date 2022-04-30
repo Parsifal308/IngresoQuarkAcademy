@@ -16,7 +16,7 @@ namespace ExamenQuarkAcademy{
         public override CuelloTipo CuelloTipo { get { return cuelloTipo;}}
         #endregion
 
-        public Camisa(CamisaTipo camisaTipo, CuelloTipo cuelloTipo, float precioUnit, Calidad calidad, int stock) : base(precioUnit, calidad, stock){
+        public Camisa(CamisaTipo camisaTipo, CuelloTipo cuelloTipo, Calidad calidad, int stock) : base(calidad, stock){
             this.camisaTipo = camisaTipo;
             this.cuelloTipo = cuelloTipo;
         }
